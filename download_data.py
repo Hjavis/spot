@@ -1,5 +1,4 @@
-from fetch_data import fetch_data
-
+from fetch_data import fetch_data, fetch_nordpool_data
 
 df_spot_prices = fetch_data(
     dataset_name="Elspotprices",
@@ -64,11 +63,6 @@ df[intraday_cols] = df[intraday_cols].ffill().bfill() #backfiller kun hvis start
 
 df.to_csv("df_interpolate.csv", index=False)
 
-#Tjek eventuelt
-#print(df.head(1000))
-#print(df.columns)
-
-#bool = df_weather_forecast.isna()
-#print(bool)
-#mean = df_weather_forecast.isna().mean()
-#print(mean)
+#######      NORDPOOL DATA     #############
+df_nordpool = fetch_nordpool_data(days_back=14)
+df_nordpool.to_csv("df_nordpool.csv", index=False)
