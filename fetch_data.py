@@ -41,7 +41,7 @@ def fetch_data(dataset_name, start=None, end=None, columns=None, filter_json=Non
     return pd.DataFrame()
 
 
-def fetch_nordpool_data(areas=["DK1","DK2"], resolution=60, days_back:int=None):
+#def fetch_nordpool_data(areas=["DK1","DK2"], resolution=60, days_back:int=None):
     end = date.today()
     prices_spot = elspot.Prices('EUR')
     
@@ -66,7 +66,7 @@ def fetch_nordpool_data(areas=["DK1","DK2"], resolution=60, days_back:int=None):
     df = pd.DataFrame(rows)
     df.sort_values(["HourUTC","PriceArea"], inplace=True)
     df.reset_index(drop=True, inplace=True) #reset index efter sort
-    df["HourUTC"] = pd.to_datetime(df["HourUTC"])
+
     return df
 
     

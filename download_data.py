@@ -1,5 +1,5 @@
-from fetch_data import fetch_data, fetch_nordpool_data
-
+from fetch_data import fetch_data#, fetch_nordpool_data
+import pandas as pd
 
 df_spot_prices = fetch_data(
     dataset_name="Elspotprices",
@@ -65,7 +65,13 @@ df[intraday_cols] = df[intraday_cols].ffill().bfill() #backfiller kun hvis start
 df.to_csv("df_interpolate.csv", index=False)
 
 #######      NORDPOOL DATA     #############
-df_nordpool = fetch_nordpool_data(days_back=14)
-df_nordpool.to_csv("df_nordpool.csv", index=False)
+#df_nordpool = fetch_nordpool_data(days_back=14)
+#df_nordpool.to_csv("df_nordpool.csv", index=False)
 
 
+df = pd.read_csv("df.csv")
+df_ip = pd.read_csv("df_interpolate.csv")
+
+#Konverter til datetime
+df["HourUTC"] = pd.to_datetime(df["HourUTC"])
+df_ip["HourUTC"] = pd.to_datetime(df_ip["HourUTC"])
