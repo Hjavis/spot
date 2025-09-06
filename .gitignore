@@ -1,3 +1,5 @@
 /__pycache__
 *.pyc
 *.pyc
+.ipynb_checkpoints/main-checkpoint.py
+.ipynb_checkpoints/book-checkpoint.ipynb
