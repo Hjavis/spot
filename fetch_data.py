@@ -16,9 +16,9 @@ def fetch_data(dataset_name, start=None, end=None, columns=None, filter_json=Non
     if columns:
         params["columns"] = ",".join(columns)
     if filter_json:
-        params["filter"] = json.dumps(filter_json)  # lad requests håndtere URL-kodning
+        params["filter"] = json.dumps(filter_json)  
     if sort:
-        params["sort"] = sort  # ikke ekstra encode
+        params["sort"] = sort  
     if limit:
         params["limit"] = limit
     if timezone:
@@ -66,6 +66,7 @@ def fetch_nordpool_data(areas=["DK1","DK2"], resolution=60, days_back:int=None):
     df = pd.DataFrame(rows)
     df.sort_values(["HourUTC","PriceArea"], inplace=True)
     df.reset_index(drop=True, inplace=True) #reset index efter sort
+    df["HourUTC"] = pd.to_datetime(df["HourUTC"])
     return df
 
     

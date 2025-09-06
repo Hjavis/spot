@@ -1,9 +1,10 @@
 from fetch_data import fetch_data, fetch_nordpool_data
 
+
 df_spot_prices = fetch_data(
     dataset_name="Elspotprices",
-    start="2023-08-01T00:00",
-    end="2025-08-02T00:00",
+    start="2022-09-01T00:00",
+    end="2025-09-02T00:00",
     columns=["HourUTC", "PriceArea", "SpotPriceEUR"],
     filter_json={"PriceArea":["DK1", "DK2"]},
     sort="HourUTC asc",
@@ -13,8 +14,8 @@ df_spot_prices = fetch_data(
 
 df_weather_forecast = fetch_data(
     dataset_name="Forecasts_hour",
-    start="2023-08-01T00:00",
-    end="2025-08-02T00:00",
+    start="2022-09-01T00:00",
+    end="2025-09-02T00:00",
     columns=["HourUTC", "PriceArea", "ForecastType", "ForecastDayAhead", "ForecastIntraday", "Forecast5Hour", "Forecast1Hour"],
     filter_json={"PriceArea":["DK1", "DK2"]},
     sort="HourUTC asc",
@@ -66,3 +67,5 @@ df.to_csv("df_interpolate.csv", index=False)
 #######      NORDPOOL DATA     #############
 df_nordpool = fetch_nordpool_data(days_back=14)
 df_nordpool.to_csv("df_nordpool.csv", index=False)
+
+
